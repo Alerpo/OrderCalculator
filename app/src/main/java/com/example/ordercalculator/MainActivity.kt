@@ -14,6 +14,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var rbDiscount5: RadioButton
     private lateinit var rbDiscount7: RadioButton
     private lateinit var rbDiscount10: RadioButton
+    private lateinit var tvTipMin: TextView
+    private lateinit var tvTipMax: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,9 +34,22 @@ class MainActivity : AppCompatActivity() {
         rbDiscount5 = findViewById(R.id.rbDiscount5)
         rbDiscount7 = findViewById(R.id.rbDiscount7)
         rbDiscount10 = findViewById(R.id.rbDiscount10)
+        tvTipMin = findViewById(R.id.tvTipMin)
+        tvTipMax = findViewById(R.id.tvTipMax)
     }
 
     private fun setupListeners() {
+        // Слайдер чаевых
+        seekBarTip.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                tvTipMin.text = progress.toString()
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+        })
+
+        // Расчет скидки при изменении количества блюд
         etDishesCount.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 calculateDiscount()
@@ -45,10 +60,21 @@ class MainActivity : AppCompatActivity() {
             calculateDiscount()
             false
         }
+
+        // Отключаем ручной выбор радиокнопок
+        rgDiscount.setOnCheckedChangeListener { _, _ ->
+            calculateDiscount()
+        }
     }
 
     private fun calculateDiscount() {
         val dishesCount = etDishesCount.text.toString().toIntOrNull() ?: 0
+
+        // Отключаем возможность ручного выбора
+        rbDiscount3.isEnabled = false
+        rbDiscount5.isEnabled = false
+        rbDiscount7.isEnabled = false
+        rbDiscount10.isEnabled = false
 
         when {
             dishesCount in 1..2 -> rbDiscount3.isChecked = true
