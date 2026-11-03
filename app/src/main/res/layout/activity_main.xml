@@ -83,6 +83,48 @@
                 android:textSize="14sp"/>
         </LinearLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Скидка:"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"/>
+
+        <RadioGroup
+            android:id="@+id/rgDiscount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbDiscount3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3%"
+                android:layout_marginEnd="16dp"/>
+
+            <RadioButton
+                android:id="@+id/rbDiscount5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5%"
+                android:layout_marginEnd="16dp"/>
+
+            <RadioButton
+                android:id="@+id/rbDiscount7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7%"
+                android:layout_marginEnd="16dp"/>
+
+            <RadioButton
+                android:id="@+id/rbDiscount10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10%"/>
+
+        </RadioGroup>
+
     </LinearLayout>
 
 </ScrollView>
