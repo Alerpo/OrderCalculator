@@ -16,6 +16,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var rbDiscount10: RadioButton
     private lateinit var tvTipMin: TextView
     private lateinit var tvTipMax: TextView
+    private lateinit var tvTipPercent: TextView
+    private lateinit var tvTipAmount: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +38,16 @@ class MainActivity : AppCompatActivity() {
         rbDiscount10 = findViewById(R.id.rbDiscount10)
         tvTipMin = findViewById(R.id.tvTipMin)
         tvTipMax = findViewById(R.id.tvTipMax)
+        tvTipPercent = findViewById(R.id.tvTipPercent)
+        tvTipAmount = findViewById(R.id.tvTipAmount)
+    }
+
+    private fun calculateTipAmount() {
+        val orderSum = etOrderSum.text.toString().toDoubleOrNull() ?: 0.0
+        val tipPercent = seekBarTip.progress
+        val tipAmount = orderSum * tipPercent / 100
+
+        tvTipAmount.text = "Сумма чаевых: ${"%.2f".format(tipAmount)} ₽"
     }
 
     private fun setupListeners() {
@@ -43,6 +55,8 @@ class MainActivity : AppCompatActivity() {
         seekBarTip.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 tvTipMin.text = progress.toString()
+                tvTipPercent.text = "Чаевые: $progress%"
+                calculateTipAmount()
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}

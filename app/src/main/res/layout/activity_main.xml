@@ -57,6 +57,22 @@
             android:progress="0"
             android:layout_marginBottom="8dp"/>
 
+        <TextView
+            android:id="@+id/tvTipPercent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Чаевые: 0%"
+            android:textSize="14sp"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:id="@+id/tvTipAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Сумма чаевых: 0 ₽"
+            android:textSize="14sp"
+            android:layout_marginBottom="16dp"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
